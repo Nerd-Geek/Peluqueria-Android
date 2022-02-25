@@ -8,15 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UserProfileView extends Fragment {
+public class AppoinmentMaker extends Fragment {
 
-    public UserProfileView() {
-
+    public AppoinmentMaker() {
+        // Required empty public constructor
     }
 
-    public static UserProfileView newInstance(String param1, String param2) {
-        UserProfileView fragment = new UserProfileView();
+
+    // TODO: Rename and change types and number of parameters
+    public static AppoinmentMaker newInstance(String param1, String param2) {
+        AppoinmentMaker fragment = new AppoinmentMaker();
         Bundle args = new Bundle();
+
         return fragment;
     }
 
@@ -30,6 +33,6 @@ public class UserProfileView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile_view, container, false);
+        return inflater.inflate(R.layout.fragment_appoinment_maker, container, false);
     }
 }
