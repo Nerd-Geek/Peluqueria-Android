@@ -6,6 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:orientation="vertical" android:background="#314B66">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentcontainerregister_id"
+        android:name="iesluisvives.peluqueriadam.FragmentRegisterUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
             android:text="Login"
             android:layout_width="match_parent"
@@ -39,7 +46,7 @@
         <Button
                 android:text="Login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/loginTextButton" app:backgroundTint="#E28973"
+                android:layout_height="wrap_content" android:id="@+id/loginButton_id" app:backgroundTint="#E28973"
                 android:textSize="32sp" android:textStyle="bold"
                 android:layout_marginBottom="5sp" android:layout_marginLeft="100sp"
                 android:layout_marginStart="100sp"
@@ -47,7 +54,7 @@
         <Button
                 android:text="Register"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/registerTextButton"
+                android:layout_height="wrap_content" android:id="@+id/registerButtonActivity_id"
                 app:backgroundTint="#E28973"
                 android:textSize="32sp" android:textStyle="bold"
                 android:layout_marginBottom="5sp" android:layout_marginLeft="100sp"

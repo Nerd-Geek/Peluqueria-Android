@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeluqueriaAndroid">
         <activity
+            android:name=".ActivityLogin"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAppointments"
+            android:exported="false" />
+        <activity
             android:name=".ViewAppointments"
             android:exported="false" />
         <activity
