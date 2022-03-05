@@ -15,6 +15,8 @@ public class ActivityLogin extends AppCompatActivity {
     private FragmentContainerView fragmentContainerView;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void initlisteners() {
-       registerbuttonactivity.setOnClickListener(new View.OnClickListener() {
+        registerbuttonactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             /*FragmentRegisterUser fragment = new FragmentRegisterUser();
@@ -34,11 +36,17 @@ public class ActivityLogin extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragmentContainerregister_id,fragment);
             fragmentTransaction.commit();*/
 
-            fragmentContainerView.setVisibility(View.VISIBLE);
+                fragmentContainerView.setVisibility(View.VISIBLE);}
 
-            }
+
+
         });
 
+        loginbutton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            //arrancar la activity
+            startActivity(intent);
+        });
 
 
 
@@ -48,7 +56,7 @@ public class ActivityLogin extends AppCompatActivity {
         registerbuttonactivity = findViewById(R.id.registerButtonActivity_id);
         loginbutton = findViewById(R.id.loginButton_id);
         registerbuttonfragment = findViewById(R.id.registerButton_id);
-        fragmentContainerView=findViewById(R.id.fragmentContainerregister_id);
+        fragmentContainerView = findViewById(R.id.fragmentContainerregister_id);
         fragmentContainerView.setVisibility(View.GONE);
     }
 
