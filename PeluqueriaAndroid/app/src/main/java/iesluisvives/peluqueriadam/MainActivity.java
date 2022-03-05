@@ -1,28 +1,17 @@
 package iesluisvives.peluqueriadam;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private TextView mainViewTextName;
     private Button btouser, btoappointments, btoverappointments, btosettins;
 
 
@@ -33,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         Toast.makeText(this, "Es el menu principal", Toast.LENGTH_LONG).show();
         initListeners();
-
+       //mainViewTextName.setText(LocalUser.getInstance().getUsername().toString());
 
     }
 
@@ -71,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents() {
 
-
+        mainViewTextName = findViewById(R.id.mainViewTextName);
         btouser = findViewById(R.id.button_user);
         btoappointments = findViewById(R.id.button_appointments);
         btoverappointments = findViewById(R.id.button_verAppointments);

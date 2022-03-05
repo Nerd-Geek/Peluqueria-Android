@@ -67,12 +67,8 @@
 
         <Button
             android:id="@+id/loginButton_id"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100sp"
-            android:layout_marginLeft="100sp"
-            android:layout_marginEnd="100sp"
-            android:layout_marginRight="100sp"
             android:layout_marginBottom="5sp"
             android:text="Login"
             android:textSize="32sp"
@@ -81,12 +77,8 @@
 
         <Button
             android:id="@+id/registerButtonActivity_id"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100sp"
-            android:layout_marginLeft="100sp"
-            android:layout_marginEnd="100sp"
-            android:layout_marginRight="100sp"
             android:layout_marginBottom="5sp"
             android:text="Register"
             android:textSize="32sp"

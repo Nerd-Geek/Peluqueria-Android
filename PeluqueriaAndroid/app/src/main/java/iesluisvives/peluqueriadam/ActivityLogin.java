@@ -9,11 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class ActivityLogin extends AppCompatActivity {
     private Button registerbuttonactivity, registerbuttonfragment, loginbutton;
     private FragmentContainerView fragmentContainerView;
-
+    private EditText usernameEditText, passwordEditText;
 
 
 
@@ -53,6 +54,8 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void initcomponents() {
+        usernameEditText = findViewById(R.id.editTextTextUsername);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
         registerbuttonactivity = findViewById(R.id.registerButtonActivity_id);
         loginbutton = findViewById(R.id.loginButton_id);
         registerbuttonfragment = findViewById(R.id.registerButton_id);
