@@ -8,176 +8,188 @@
     android:orientation="vertical"
     tools:context=".FragmentRegisterUser">
 
-    <TextView
-        android:id="@+id/userProfileTextNameLabel2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_username"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/usernameUserPlain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColor="@color/paleorange" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/userProfileTextPasswordLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_password"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextNameLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_username"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/passwordUserPlain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/usernameUserPlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/paleorange" />
 
-    <TextView
-        android:id="@+id/userProfileTextNameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_name"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextPasswordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_password"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/nameUserPlain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColor="@color/paleorange" />
+            <EditText
+                android:id="@+id/passwordUserPlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/userProfileTextSurnameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_surname"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_name"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/surnameUserPain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/surname"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColor="@color/paleorange" />
+            <EditText
+                android:id="@+id/nameUserPlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/paleorange" />
 
-    <TextView
-        android:id="@+id/userProfileTextGenderLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_gender"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextSurnameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_surname"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <Spinner
-        android:id="@+id/registerGenderSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:entries="@array/Gender"
-        android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/surnameUserPain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/surname"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/paleorange" />
 
-    <TextView
-        android:id="@+id/userProfileTextTelephoneLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_telephone"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextGenderLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_gender"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/telephoneUserPain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/telephone"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        android:textColor="@color/paleorange" />
+            <Spinner
+                android:id="@+id/registerGenderSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:entries="@array/Gender"
+                android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/userProfileTextEmailLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:text="@string/user_label_email"
-        android:textColor="@color/paleorange"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextTelephoneLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_telephone"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/emailUserPain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColor="@color/paleorange"
-        tools:ignore="TextFields" />
+            <EditText
+                android:id="@+id/telephoneUserPain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/telephone"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:textColor="@color/paleorange" />
 
-    <Button
-        android:id="@+id/registerButton_id"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="@string/register"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/userProfileTextEmailLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:text="@string/user_label_email"
+                android:textColor="@color/paleorange"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/emailUserPain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColor="@color/paleorange"
+                tools:ignore="TextFields" />
+
+            <Button
+                android:id="@+id/registerButton_id"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="@string/register"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
