@@ -26,11 +26,16 @@ public class UserEntity {
     private String email;
     @NonNull
     private UserGender gender;
+
+    private String token;
+
     @Ignore
     public UserEntity() {
     }
 
-    public UserEntity(@NonNull String id, String image, @NonNull String username, @NonNull String name, @NonNull String surname, @NonNull String phoneNumber, @NonNull String email, @NonNull UserGender gender) {
+    public UserEntity(@NonNull String id, String image, @NonNull String username,
+                      @NonNull String name, @NonNull String surname, @NonNull String phoneNumber,
+                      @NonNull String email, @NonNull UserGender gender, String token) {
         this.id = id;
         this.image = image;
         this.username = username;
@@ -39,6 +44,7 @@ public class UserEntity {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.gender = gender;
+        this.token = token;
     }
 
     @NonNull
@@ -110,5 +116,13 @@ public class UserEntity {
 
     public void setGender(@NonNull UserGender gender) {
         this.gender = gender;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

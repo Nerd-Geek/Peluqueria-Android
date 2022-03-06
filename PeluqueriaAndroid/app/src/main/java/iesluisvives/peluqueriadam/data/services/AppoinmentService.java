@@ -7,18 +7,19 @@ import iesluisvives.peluqueriadam.data.entity.ServiceEntity;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface AppoinmentService {
 
-    @GET("/appointments/mobile")
-    Call<List<AppoinmentEntity>> getAllAppoinmentsByDateAndServiceId(@Query("date")String date, @Query("service_id")String service_id);
+    @GET("/rest/appointments/mobile")
+    Call<List<AppoinmentEntity>> getAllAppoinmentsByDateAndServiceId(@Query("date")String date, @Query("service_id")String service_id,@Header("Authorization") String token);
 
-    @GET("/appointments/mobile")
-    Call<List<AppoinmentEntity>> getAllAppoinmentsByUserName(@Query("searchQuery")String username);
+    @GET("/rest/appointments/mobile/")
+    Call<List<AppoinmentEntity>> getAllAppoinmentsByUserName(@Query("searchQuery")String username,@Header("Authorization") String token);
 
-    @POST("/appointments")
-    Call<AppoinmentEntity> createAppointment(@Body ServiceEntity serviceEntity);
+    @POST("/rest/appointments/")
+    Call<AppoinmentEntity> createAppointment(@Body ServiceEntity serviceEntity,@Header("Authorization") String token);
 
 }

@@ -10,24 +10,22 @@ public class CreateUserEntity {
 
     private String id;
     private String image;
-    private boolean superUser;
     private String username;
     private String password;
+    private String passwordConfirm;
     private String name;
     private String surname;
     private String phoneNumber;
     private String email;
     private UserGender gender;
 
-    public CreateUserEntity() {
-    }
 
-    public CreateUserEntity(String id, String image, boolean superUser, String username, String password, String name, String surname, String phoneNumber, String email, UserGender gender) {
+    public CreateUserEntity(String id, String image, String username, String password, String passwordConfirm, String name, String surname, String phoneNumber, String email, UserGender gender) {
         this.id = id;
         this.image = image;
-        this.superUser = superUser;
         this.username = username;
         this.password = password;
+        this.passwordConfirm = passwordConfirm;
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -49,14 +47,6 @@ public class CreateUserEntity {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public boolean isSuperUser() {
-        return superUser;
-    }
-
-    public void setSuperUser(boolean superUser) {
-        this.superUser = superUser;
     }
 
     public String getUsername() {
@@ -113,5 +103,20 @@ public class CreateUserEntity {
 
     public void setGender(UserGender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateUserEntity{" +
+                "id='" + id + '\'' +
+                ", image='" + image + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 }

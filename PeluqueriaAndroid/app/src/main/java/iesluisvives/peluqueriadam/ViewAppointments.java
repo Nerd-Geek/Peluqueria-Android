@@ -18,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewAppointments extends AppCompatActivity {
-    private LocalUser localUser;
     private AppoinmentService appoinmentService;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -34,16 +33,18 @@ public class ViewAppointments extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        Call<List<AppoinmentEntity>> listCall = appoinmentService.getAllAppoinmentsByUserName(localUser.getUsername().toString());
+        Call<List<AppoinmentEntity>> listCall = appoinmentService.getAllAppoinmentsByUserName(LocalUser.getInstance().getUsername().toString(),"Bearer "+LocalUser.getInstance().getToken());
         listCall.enqueue(new Callback<List<AppoinmentEntity>>() {
             @Override
             public void onResponse(Call<List<AppoinmentEntity>> call, Response<List<AppoinmentEntity>> response) {
+                System.out.println(LocalUser.getInstance().toString());
                 if(!response.isSuccessful()){
                     Toast.makeText(getApplicationContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
                     appoinmentEntityList.add(new AppoinmentEntity());
                 }else {
+
                     if(response.body().isEmpty()){
-                        appoinmentEntityList.add(new AppoinmentEntity());
+                     //   appoinmentEntityList.add(new AppoinmentEntity());
                     }else appoinmentEntityList = response.body();
                     adapter = new RecyclerViewAppoinmentsAdapter(appoinmentEntityList);
                     recyclerView.setAdapter(adapter);
@@ -55,6 +56,5 @@ public class ViewAppointments extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }

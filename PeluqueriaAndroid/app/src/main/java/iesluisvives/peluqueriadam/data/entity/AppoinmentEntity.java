@@ -50,4 +50,14 @@ public class AppoinmentEntity {
     public void setService(ServiceEntity service) {
         this.service = service;
     }
+
+    @Override
+    public String toString() {
+        return "AppoinmentEntity{" +
+                "id='" + id + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                ", service=" + service +
+                '}';
+    }
 }

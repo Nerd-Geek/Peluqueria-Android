@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +69,9 @@ public class FragmentRegisterUser extends Fragment {
                 if(editTextValid()) {
                     CreateUserEntity user = new CreateUserEntity(
                             UUID.randomUUID().toString(),
-                            null,
-                            false,
+                            " ",
                             usernameUserPlain.getText().toString(),
+                            passwordUserPlain.getText().toString(),
                             passwordUserPlain.getText().toString(),
                             nameUserPlain.getText().toString(),
                             surnamePlain.getText().toString(),
@@ -78,6 +79,7 @@ public class FragmentRegisterUser extends Fragment {
                             emailUserPlain.getText().toString(),
                             UserGender.valueOf(genderSpinner.getSelectedItem().toString())
                             );
+                    System.out.println(user);
                     Call<CreateUserEntity> registerUserinApi = userService.createUser(user);
                     registerUserinApi.enqueue(new Callback<CreateUserEntity>() {
                         @Override
@@ -94,7 +96,8 @@ public class FragmentRegisterUser extends Fragment {
                                         localUser.getSurname(),
                                         localUser.getPhoneNumber(),
                                         localUser.getEmail(),
-                                        UserGender.valueOf(localUser.getGender().toString())
+                                        UserGender.valueOf(localUser.getGender().toString()),
+                                        null
                                 ));
 
                                 LocalUser.getInstance().setId(localUser.getId());
@@ -106,7 +109,7 @@ public class FragmentRegisterUser extends Fragment {
                                 LocalUser.getInstance().setGender(localUser.getGender().toString());
                                 LocalUser.getInstance().setTelephone(localUser.getPhoneNumber());
                                 LocalUser.getInstance().setEmail(localUser.getEmail());
-
+                                System.out.println(LocalUser.getInstance().toString());
                                 viewarriba.setVisibility(View.GONE);
                             }
                         }

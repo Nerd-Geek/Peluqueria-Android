@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class ApiClient {
     public  static  final String URL_001 = "http://10.0.2.2:13169/";
@@ -21,6 +22,7 @@ public class ApiClient {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL_001)
                 .addConverterFactory(GsonConverterFactory.create())
+                //.addConverterFactory(JacksonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 

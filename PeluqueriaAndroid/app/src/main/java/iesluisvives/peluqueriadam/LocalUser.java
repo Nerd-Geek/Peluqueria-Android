@@ -12,6 +12,7 @@ public class LocalUser {
     private String gender;
     private String telephone;
     private String email;
+    private String token;
 
     private LocalUser(){}
 
@@ -90,5 +91,28 @@ public class LocalUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    @Override
+    public String toString() {
+        return "LocalUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
