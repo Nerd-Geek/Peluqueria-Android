@@ -4,14 +4,14 @@ public class ServiceEntity {
     private String id;
     private String image;
     private String name;
-    private String desciption;
+    private String description;
     private Double price;
     private Integer stock;
 
-    public ServiceEntity(String id, String name, String desciption, String image, Double price, Integer stock) {
+    public ServiceEntity(String id, String name, String description, String image, Double price, Integer stock) {
         this.id = id;
         this.name = name;
-        this.desciption = desciption;
+        this.description = description;
         this.image = image;
         this.price = price;
         this.stock = stock;
@@ -33,13 +33,9 @@ public class ServiceEntity {
         this.name = name;
     }
 
-    public String getDesciption() {
-        return desciption;
-    }
+    public String getDescription() { return description; }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
-    }
+    public void setDescription(String description) { this.description = description; }
 
     public String getImage() {
         return image;
