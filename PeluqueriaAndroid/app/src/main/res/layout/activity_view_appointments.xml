@@ -30,6 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/view_appoinment_cancel"
+        android:text="@string/view_appoinment_delete"
         android:textColor="@color/white" />
 </LinearLayout>

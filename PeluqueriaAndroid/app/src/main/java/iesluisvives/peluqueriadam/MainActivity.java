@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btosettins.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ActivityLogin.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             //arrancar la activity
             startActivity(intent);
         });

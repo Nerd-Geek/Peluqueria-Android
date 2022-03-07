@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -12,14 +14,19 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import iesluisvives.peluqueriadam.ApiRest.ApiClient;
 import iesluisvives.peluqueriadam.data.entity.AppoinmentEntity;
+import iesluisvives.peluqueriadam.data.entity.CreateAppoinmentEntity;
 import iesluisvives.peluqueriadam.data.entity.ServiceEntity;
 import iesluisvives.peluqueriadam.data.services.AppoinmentService;
 import iesluisvives.peluqueriadam.data.services.ServiceService;
@@ -28,14 +35,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ActivityAppointments extends AppCompatActivity {
-    private ChipGroup chipgroup;
     private ServiceService serviceService;
     private List<ServiceEntity> servicesList;
     private AppoinmentService appoinmentService;
     private List<AppoinmentEntity> appoinmentList;
-    private Spinner servicesSpinner;
+    private Spinner servicesSpinner,makeAppoinmentMinuteSpinner, makeAppoinmentHourSpinner;
     private ServicesSpinnerAdapter spinnerAdapter;
     private CalendarView calendarView;
+    private Button makeAppoinmentButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +57,16 @@ public class ActivityAppointments extends AppCompatActivity {
         servicesList = new ArrayList<>();
         appoinmentList = new ArrayList<>();
         servicesSpinner = findViewById(R.id.servicesSpinner);
+        makeAppoinmentHourSpinner = findViewById(R.id.makeAppoinmentHourSpinner);
+        makeAppoinmentMinuteSpinner = findViewById(R.id.makeAppoinmentMinuteSpinner);
         calendarView = findViewById(R.id.calendarView);
+        makeAppoinmentButton = findViewById(R.id.appoinmentMakerButton);
+
         spinnerControl();
-        calendarControl();
+        makeAppoinmentSender();
     }
+
+
 
     public void spinnerControl(){
         Call<List<ServiceEntity>> callServicesList = serviceService.getAllServices("Bearer "+LocalUser.getInstance().getToken());
@@ -74,75 +87,42 @@ public class ActivityAppointments extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
             }
         });
+
     }
-    public void calendarControl(){
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+    private void makeAppoinmentSender() {
+        makeAppoinmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                i1 +=1;
-                String month, day;
-                if (i1<10) month = "0"+i1;
-                else month = String.valueOf(i1);
-                if (i1<10) day = "0"+i2;
-                else day = String.valueOf(i2);
-                String date = i+"-"+month+"-"+day;
+            public void onClick(View view) {
 
-                System.out.println(date);
-                Call<List<AppoinmentEntity>> callAppoinmentsList =
-                        appoinmentService.getAllAppoinmentsByDateAndServiceId(
-                                (date),
-                                servicesList.get(servicesSpinner.getSelectedItemPosition()).getId(),
-                                "Bearer "+LocalUser.getInstance().getToken());
-                callAppoinmentsList.enqueue(new Callback<List<AppoinmentEntity>>() {
+                CreateAppoinmentEntity appoinmentEntity = new CreateAppoinmentEntity(
+                        UUID.randomUUID().toString(),
+                        fromCalendarViewToLocalDate(),
+                        LocalTime.of(Integer.parseInt((String)makeAppoinmentHourSpinner.getSelectedItem()),
+                                Integer.parseInt((String)makeAppoinmentMinuteSpinner.getSelectedItem())),
+                        LocalUser.getInstance().getId(),
+                        servicesList.get(servicesSpinner.getSelectedItemPosition()).getId());
+                Call<CreateAppoinmentEntity> makeAppoinmentCall = appoinmentService.createAppointment(appoinmentEntity,"Bearer "+LocalUser.getInstance().getToken());
+                makeAppoinmentCall.enqueue(new Callback<CreateAppoinmentEntity>() {
                     @Override
-                    public void onResponse(Call<List<AppoinmentEntity>> call, Response<List<AppoinmentEntity>> response) {
-                        if(!response.isSuccessful()) Toast.makeText(getApplicationContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
-                        else {
-                            System.out.println("OBTAINED");
-                            appoinmentList = response.body();
-
-                        }
+                    public void onResponse(Call<CreateAppoinmentEntity> call, Response<CreateAppoinmentEntity> response) {
+                        if(!response.isSuccessful())Toast.makeText(getApplicationContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
+                        else Toast.makeText(getApplicationContext(),"Appointment maked successfully",Toast.LENGTH_LONG).show();
                     }
 
                     @Override
-                    public void onFailure(Call<List<AppoinmentEntity>> call, Throwable t) {
+                    public void onFailure(Call<CreateAppoinmentEntity> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
-                        System.out.println(t.getMessage());
                     }
                 });
-                chipControl();
             }
         });
     }
-    public void chipControl(){
-        if(!appoinmentList.isEmpty()){
-            for (AppoinmentEntity ap:appoinmentList) {
-                System.out.println(ap);
-            }
-            ServiceEntity serviceSelected = servicesList.get(servicesSpinner.getSelectedItemPosition());
-            Map<LocalTime,Integer> hourmap = new HashMap<>();
-            for (AppoinmentEntity appoinment:appoinmentList) {
-                if(hourmap.isEmpty()){
-                    hourmap.put(appoinment.getTime(),1);
-                }
-                else if(hourmap.containsKey(appoinment.getDate())){
-                    int temp = hourmap.get(appoinment.getDate());
-                    hourmap.remove(appoinment.getDate());
-                    hourmap.put(appoinment.getTime(),temp+1);
-                }
-            }
-            for (LocalTime key:hourmap.keySet()) {
-                if(hourmap.get(key)>=serviceSelected.getStock()){
-                    for(int i = 0; i>chipgroup.getChildCount();i++) {
-                        Chip chip = (Chip) chipgroup.getChildAt(i);
-                        String keyHours = key.toString();
-                        System.out.println(keyHours);
-                        if(keyHours.equals(chip.getText().toString())){
-                            chip.setEnabled(false);
-                        }
-                    }
-                }
-            }
-        }
+    public LocalDate fromCalendarViewToLocalDate(){
+        Calendar.getInstance().setTimeInMillis(calendarView.getDate());
+        Calendar calendar = Calendar.getInstance();
+        LocalDateTime lc = LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
+        LocalDate ld = lc.toLocalDate();
+        return ld;
     }
 }
