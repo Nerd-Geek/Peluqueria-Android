@@ -50,11 +50,9 @@ public class ActivityAppointments extends AppCompatActivity {
         servicesList = new ArrayList<>();
         appoinmentList = new ArrayList<>();
         servicesSpinner = findViewById(R.id.servicesSpinner);
-
+        calendarView = findViewById(R.id.calendarView);
         spinnerControl();
         calendarControl();
-
-
     }
 
     public void spinnerControl(){
@@ -76,7 +74,6 @@ public class ActivityAppointments extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
             }
         });
-        calendarView = findViewById(R.id.calendarView);
     }
     public void calendarControl(){
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -101,7 +98,7 @@ public class ActivityAppointments extends AppCompatActivity {
                     public void onResponse(Call<List<AppoinmentEntity>> call, Response<List<AppoinmentEntity>> response) {
                         if(!response.isSuccessful()) Toast.makeText(getApplicationContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
                         else {
-                            System.out.println("OBTENIDA");
+                            System.out.println("OBTAINED");
                             appoinmentList = response.body();
 
                         }

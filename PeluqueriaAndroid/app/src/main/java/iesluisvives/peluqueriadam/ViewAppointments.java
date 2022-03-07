@@ -33,7 +33,7 @@ public class ViewAppointments extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        Call<List<AppoinmentEntity>> listCall = appoinmentService.getAllAppoinmentsByUserName(LocalUser.getInstance().getUsername().toString(),"Bearer "+LocalUser.getInstance().getToken());
+        Call<List<AppoinmentEntity>> listCall = appoinmentService.getAllAppoinmentsByUserName(LocalUser.getInstance().getUsername(),"Bearer "+LocalUser.getInstance().getToken());
         listCall.enqueue(new Callback<List<AppoinmentEntity>>() {
             @Override
             public void onResponse(Call<List<AppoinmentEntity>> call, Response<List<AppoinmentEntity>> response) {
@@ -54,6 +54,7 @@ public class ViewAppointments extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<AppoinmentEntity>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
+                System.out.println(t.getMessage());
             }
         });
     }

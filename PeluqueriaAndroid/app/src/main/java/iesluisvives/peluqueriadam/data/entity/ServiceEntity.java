@@ -2,9 +2,9 @@ package iesluisvives.peluqueriadam.data.entity;
 
 public class ServiceEntity {
     private String id;
+    private String image;
     private String name;
     private String desciption;
-    private String image;
     private Double price;
     private Integer stock;
 

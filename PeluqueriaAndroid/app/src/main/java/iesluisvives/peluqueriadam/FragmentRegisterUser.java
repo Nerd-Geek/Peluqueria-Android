@@ -100,16 +100,6 @@ public class FragmentRegisterUser extends Fragment {
                                         null
                                 ));
 
-                                LocalUser.getInstance().setId(localUser.getId());
-                                LocalUser.getInstance().setImage(localUser.getImage());
-                                LocalUser.getInstance().setUsername(localUser.getUsername());
-                                LocalUser.getInstance().setPassword(localUser.getPassword());
-                                LocalUser.getInstance().setName(localUser.getName());
-                                LocalUser.getInstance().setSurname(localUser.getSurname());
-                                LocalUser.getInstance().setGender(localUser.getGender().toString());
-                                LocalUser.getInstance().setTelephone(localUser.getPhoneNumber());
-                                LocalUser.getInstance().setEmail(localUser.getEmail());
-                                System.out.println(LocalUser.getInstance().toString());
                                 viewarriba.setVisibility(View.GONE);
                             }
                         }

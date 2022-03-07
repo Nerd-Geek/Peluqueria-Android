@@ -12,7 +12,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewAppoinments"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp">
 
     </androidx.recyclerview.widget.RecyclerView>
