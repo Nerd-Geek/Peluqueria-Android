@@ -5,6 +5,7 @@ import androidx.annotation.Size;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Set;
 @Entity(tableName = "users")
@@ -29,13 +30,49 @@ public class UserEntity {
 
     private String token;
 
+    @JsonIgnore
+    @Ignore
+    private Set<UserRoles> userRoles;
+
+    @JsonIgnore
+    @Ignore
+    private Set<AppoinmentEntity> appointments;
+
     @Ignore
     public UserEntity() {
     }
 
-    public UserEntity(@NonNull String id, String image, @NonNull String username,
-                      @NonNull String name, @NonNull String surname, @NonNull String phoneNumber,
-                      @NonNull String email, @NonNull UserGender gender, String token) {
+//    public UserEntity(@NonNull String id, String image, @NonNull String username,
+//                      @NonNull String name, @NonNull String surname, @NonNull String phoneNumber,
+//                      @NonNull String email, @NonNull UserGender gender, String token, Set<UserRoles> roles, Set<AppoinmentEntity> appointments) {
+//        this.id = id;
+//        this.image = image;
+//        this.username = username;
+//        this.name = name;
+//        this.surname = surname;
+//        this.phoneNumber = phoneNumber;
+//        this.email = email;
+//        this.gender = gender;
+//        this.token = token;
+//        this.roles = roles;
+//        this.appointments = appointments;
+//    }
+
+    public UserEntity(@NonNull String id, String image, @NonNull String username, @NonNull String name, @NonNull String surname, @NonNull String phoneNumber, @NonNull String email, @NonNull UserGender gender, String token, Set<UserRoles> roles, Set<AppoinmentEntity> appointments) {
+        this.id = id;
+        this.image = image;
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.token = token;
+        this.userRoles = roles;
+        this.appointments = appointments;
+    }
+
+    public UserEntity(@NonNull String id, String image, @NonNull String username, @NonNull String name, @NonNull String surname, @NonNull String phoneNumber, @NonNull String email, @NonNull UserGender gender, String token) {
         this.id = id;
         this.image = image;
         this.username = username;
@@ -124,5 +161,21 @@ public class UserEntity {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Set<UserRoles> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRoles> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    public Set<AppoinmentEntity> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<AppoinmentEntity> appointments) {
+        this.appointments = appointments;
     }
 }

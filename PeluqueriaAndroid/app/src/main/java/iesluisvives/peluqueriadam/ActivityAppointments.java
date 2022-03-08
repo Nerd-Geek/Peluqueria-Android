@@ -1,5 +1,6 @@
 package iesluisvives.peluqueriadam;
 
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,22 +11,16 @@ import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Priority;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.time.*;
+import java.util.*;
 
 import iesluisvives.peluqueriadam.ApiRest.ApiClient;
 import iesluisvives.peluqueriadam.data.entity.AppoinmentEntity;
+import iesluisvives.peluqueriadam.data.entity.AppoinmentEntityWithUser;
 import iesluisvives.peluqueriadam.data.entity.CreateAppoinmentEntity;
 import iesluisvives.peluqueriadam.data.entity.ServiceEntity;
 import iesluisvives.peluqueriadam.data.services.AppoinmentService;
@@ -42,6 +37,7 @@ public class ActivityAppointments extends AppCompatActivity {
     private Spinner servicesSpinner,makeAppoinmentMinuteSpinner, makeAppoinmentHourSpinner;
     private ServicesSpinnerAdapter spinnerAdapter;
     private CalendarView calendarView;
+    private Calendar calendar;
     private Button makeAppoinmentButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +55,17 @@ public class ActivityAppointments extends AppCompatActivity {
         servicesSpinner = findViewById(R.id.servicesSpinner);
         makeAppoinmentHourSpinner = findViewById(R.id.makeAppoinmentHourSpinner);
         makeAppoinmentMinuteSpinner = findViewById(R.id.makeAppoinmentMinuteSpinner);
+        calendar = Calendar.getInstance();
         calendarView = findViewById(R.id.calendarView);
         makeAppoinmentButton = findViewById(R.id.appoinmentMakerButton);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+               calendar.set(year, month, dayOfMonth);
+            }
+        });
         spinnerControl();
         makeAppoinmentSender();
     }
@@ -90,6 +94,7 @@ public class ActivityAppointments extends AppCompatActivity {
 
     }
 
+
     private void makeAppoinmentSender() {
         makeAppoinmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,16 +107,20 @@ public class ActivityAppointments extends AppCompatActivity {
                                 Integer.parseInt((String)makeAppoinmentMinuteSpinner.getSelectedItem())),
                         LocalUser.getInstance().getId(),
                         servicesList.get(servicesSpinner.getSelectedItemPosition()).getId());
-                Call<CreateAppoinmentEntity> makeAppoinmentCall = appoinmentService.createAppointment(appoinmentEntity,"Bearer "+LocalUser.getInstance().getToken());
-                makeAppoinmentCall.enqueue(new Callback<CreateAppoinmentEntity>() {
-                    @Override
-                    public void onResponse(Call<CreateAppoinmentEntity> call, Response<CreateAppoinmentEntity> response) {
-                        if(!response.isSuccessful())Toast.makeText(getApplicationContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
-                        else Toast.makeText(getApplicationContext(),"Appointment maked successfully",Toast.LENGTH_LONG).show();
-                    }
+                Call<AppoinmentEntityWithUser> makeAppoinmentCall = appoinmentService.createAppointment(appoinmentEntity,"Bearer "+LocalUser.getInstance().getToken());
+                makeAppoinmentCall.enqueue(new Callback<AppoinmentEntityWithUser>() {
 
                     @Override
-                    public void onFailure(Call<CreateAppoinmentEntity> call, Throwable t) {
+                    public void onResponse(Call<AppoinmentEntityWithUser> call, Response<AppoinmentEntityWithUser> response) {
+                        if(response.code() == 200) {
+                            Toast.makeText(getApplicationContext(), "Appointment made successfully", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                                Toast.makeText(getApplicationContext(),("This appointment is not available"),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<AppoinmentEntityWithUser> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),("ERROR: " + t.getMessage()),Toast.LENGTH_LONG).show();
                     }
                 });
@@ -119,10 +128,7 @@ public class ActivityAppointments extends AppCompatActivity {
         });
     }
     public LocalDate fromCalendarViewToLocalDate(){
-        Calendar.getInstance().setTimeInMillis(calendarView.getDate());
-        Calendar calendar = Calendar.getInstance();
         LocalDateTime lc = LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-        LocalDate ld = lc.toLocalDate();
-        return ld;
+        return lc.toLocalDate();
     }
 }

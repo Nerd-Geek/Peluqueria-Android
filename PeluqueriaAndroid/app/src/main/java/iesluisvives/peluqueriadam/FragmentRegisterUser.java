@@ -16,15 +16,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import iesluisvives.peluqueriadam.ApiRest.ApiClient;
 import iesluisvives.peluqueriadam.data.database.RoomDB;
 import iesluisvives.peluqueriadam.data.entity.CreateUserEntity;
 import iesluisvives.peluqueriadam.data.entity.UserEntity;
 import iesluisvives.peluqueriadam.data.entity.UserGender;
+import iesluisvives.peluqueriadam.data.entity.UserRoles;
 import iesluisvives.peluqueriadam.data.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,6 +87,8 @@ public class FragmentRegisterUser extends Fragment {
                                 Toast.makeText(getContext(),("Code: "+response.code()),Toast.LENGTH_LONG).show();
                             }else {
                                 localUser = response.body();
+                                Set<UserRoles> roles = new HashSet<>();
+                                roles.add(UserRoles.USER);
                                 RoomDB.getInstance(getContext()).userDao().insert(new UserEntity(
                                         localUser.getId(),
                                         localUser.getImage(),
@@ -97,7 +98,9 @@ public class FragmentRegisterUser extends Fragment {
                                         localUser.getPhoneNumber(),
                                         localUser.getEmail(),
                                         UserGender.valueOf(localUser.getGender().toString()),
-                                        null
+                                        null,
+                                        roles,
+                                        new HashSet<>()
                                 ));
 
                                 viewarriba.setVisibility(View.GONE);

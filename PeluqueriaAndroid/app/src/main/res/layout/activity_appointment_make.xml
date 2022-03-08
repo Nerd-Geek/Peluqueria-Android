@@ -32,11 +32,12 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <CalendarView
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/palewarmpurple"
-                    android:forceHasOverlappingRendering="false" />
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/palewarmpurple"
+                        android:forceHasOverlappingRendering="false" android:contextClickable="true"
+                        android:clickable="true" android:longClickable="false"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

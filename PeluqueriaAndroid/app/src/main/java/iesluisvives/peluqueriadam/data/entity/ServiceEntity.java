@@ -8,6 +8,9 @@ public class ServiceEntity {
     private Double price;
     private Integer stock;
 
+    public ServiceEntity() {
+    }
+
     public ServiceEntity(String id, String name, String description, String image, Double price, Integer stock) {
         this.id = id;
         this.name = name;

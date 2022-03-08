@@ -3,6 +3,7 @@ package iesluisvives.peluqueriadam.data.services;
 import java.util.List;
 
 import iesluisvives.peluqueriadam.data.entity.AppoinmentEntity;
+import iesluisvives.peluqueriadam.data.entity.AppoinmentEntityWithUser;
 import iesluisvives.peluqueriadam.data.entity.CreateAppoinmentEntity;
 import iesluisvives.peluqueriadam.data.entity.ServiceEntity;
 import retrofit2.Call;
@@ -21,6 +22,6 @@ public interface AppoinmentService {
     Call<List<AppoinmentEntity>> getAllAppoinmentsByUserName(@Query("searchQuery")String username,@Header("Authorization") String token);
 
     @POST("/rest/appointments/")
-    Call<CreateAppoinmentEntity> createAppointment(@Body CreateAppoinmentEntity createAppoinmentEntity, @Header("Authorization") String token);
+    Call<AppoinmentEntityWithUser> createAppointment(@Body CreateAppoinmentEntity createAppoinmentEntity, @Header("Authorization") String token);
 
 }
