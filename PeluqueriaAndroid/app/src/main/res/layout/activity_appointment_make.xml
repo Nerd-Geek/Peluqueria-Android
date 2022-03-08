@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityAppointments"
+    android:background="@color/paledarkblue">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/linearLayoutappoinment_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:isScrollContainer="false"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/servicesSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:background="@color/paledarkcream"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/palewarmpurple"
+                        android:forceHasOverlappingRendering="false" android:contextClickable="true"
+                        android:clickable="true" android:longClickable="false"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/makeAppoinmentHourSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_weight="1"
+                        android:background="@color/paledarkcream"
+                        android:entries="@array/hourValues"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="center" />
+
+                    <Spinner
+                        android:id="@+id/makeAppoinmentMinuteSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_weight="1"
+                        android:background="@color/paledarkcream"
+                        android:entries="@array/minuteValues"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/appoinmentMakerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:minWidth="166dip"
+                android:text="@string/main_view_button_make_appointment" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
